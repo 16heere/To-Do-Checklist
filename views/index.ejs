@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <section id = "notepad">
+        <div class="container">
+            <div class="header">
+                <h2><%  const date = new Date();
+                    const day = date.getDate();
+                    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    const currentDayOfWeek = daysOfWeek[date.getDay()];
+                    const month = date.toLocaleString('default', { month: 'short' });
+                     %>
+                <%= currentDayOfWeek + ", " + month + " " + day%></h2>
+            </div>
+
+            <div class="input">
+                <form action="/submit" method="post" class="input"><input type="text" name="List" id="input" placeholder="New item" required="">
+                    <button onclick="pushData();">+</button>
+                </form>
+            </div>
+
+            <div class="list" id = "view">
+                <%if (locals.checklist) { %>
+                    <%for(var i = 0; i < checklist.length ; i++) { %>
+                        <div class="item">
+                            <input type="checkbox" id = checkbox><label><%= checklist[i] %></label>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
